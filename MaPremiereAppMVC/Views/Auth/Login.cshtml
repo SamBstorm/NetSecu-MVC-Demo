@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@{
+    var modelState = ViewContext.ModelState;
+}
+
+@if(!modelState.IsValid){
+    <div class="alert alert-danger">
+        <p>Il y a dans ce formulaire : @modelState.ErrorCount erreur(s)</p>
+        <dl>
+            @foreach (KeyValuePair<string, ModelStateEntry> errors in modelState)
+            {
+                @if(errors.Value.Errors.Count > 0){
+                    <dt>@errors.Key :</dt>
+                    <dd>
+                        <ul>
+                        @foreach (ModelError error in errors.Value.Errors)
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                        </ul>
+                    </dd>
+                }
+            }
+        </dl>
+    </div>
+}
+
+<form method="post">
+    <div>
+        <label for="username">Nom d'utilisateur :</label>
+        <input id="username" name="username" type="text"/>
+    </div>
+    <div>
+        <label for="password">Mot de passe : </label>
+        <input id="password" name="password" type="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Se connecter" />
+    </div>
+</form>
