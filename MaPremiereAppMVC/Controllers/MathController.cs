@@ -48,8 +48,15 @@ namespace MaPremiereAppMVC.Controllers
             return result;
         }
 
-        public IActionResult TableauCroise()
+        public IActionResult TableauCroise(int id)
         {
+            //ViewData["taille"] = id;
+            ////Est le même que 
+            ViewBag.taille = id;
+            if (TempData.ContainsKey("old_taille") && TempData["old_taille"] == ViewData["taille"])
+                TempData.Keep();
+            else 
+                TempData["old_taille"] = id;
             return View();
         }
     }

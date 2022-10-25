@@ -36,6 +36,7 @@ namespace MaPremiereAppMVC.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [NonAction]
         protected override void Dispose(bool disposing)
         {
             _logger.LogInformation($"Controller : {nameof(HomeController)} est supprimé");

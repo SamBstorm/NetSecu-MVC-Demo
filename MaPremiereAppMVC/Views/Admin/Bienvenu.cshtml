@@ -1,0 +1,23 @@
+﻿@model MaPremiereAppMVC.Models.ModelViews.AdminBienvenuView
+
+<h1>@Model.Message</h1>
+
+@if (Model.Admins is null)
+{
+    <p>Veuillez contacter <a href="mailto:@Model.AdminContactMail">@Model.AdminContactMail</a> !</p>
+}
+else{
+    <ul>
+        @foreach (Admin admin in Model.Admins)
+        {
+            @*<li>
+                <div>
+                    <h3><a href="mailto:@admin.Email">@admin.LastName, @admin.FirstName</a></h3>
+                </div>
+            </li>*@
+            Html.RenderPartial("_AdminListItemPartialView",admin);
+        }
+    </ul>
+}
+
+

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MaPremiereAppMVC.Models;
+using MaPremiereAppMVC.Models.ModelViews;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MaPremiereAppMVC.Controllers
 {
@@ -6,7 +8,7 @@ namespace MaPremiereAppMVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Bienvenu");
         }
 
         [Route("Admin/new")]
@@ -16,11 +18,32 @@ namespace MaPremiereAppMVC.Controllers
             return View();
         }
 
-        [Route("Admin/Bienvenu/{name}")]
-        [Route("Admin/Bienvenu")]
-        public string Bienvenu(string name)
+        public IActionResult Bienvenu()
         {
-            return $"Bienvenu administrateur {name}";
+            AdminBienvenuView model = new AdminBienvenuView() {
+                AdminContactMail = "info.admin@monSiteMVC.be"
+            };
+            model.AddAdmin(new Admin() { 
+                FirstName = "Samuel", 
+                LastName = "Legrain", 
+                Email = "samuel.legrain@bstorm.be"
+            });
+            model.AddAdmin(new Admin() { 
+                FirstName = "Thierry", 
+                LastName = "Morre", 
+                Email = "thierry.morre@cognitic.be" 
+            });
+            model.AddAdmin(new Admin() { 
+                FirstName = "Michaël", 
+                LastName = "Person", 
+                Email = "michael.person@cognitic.be" 
+            });
+            model.AddAdmin(new Admin() { 
+                FirstName = "Aude", 
+                LastName = "Beurive", 
+                Email = "aude.beurive@bstorm.be" 
+            });
+            return View(model);
         }
 
         public string codehtml()
