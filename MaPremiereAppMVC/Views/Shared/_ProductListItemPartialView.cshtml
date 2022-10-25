@@ -1,0 +1,9 @@
+﻿@model MaPremiereAppMVC.Models.Product
+
+<li class="list-unstyled">
+    <div class="container btn">
+        <p>@Model.Name</p>
+        <p>@Model.Price €</p>
+        <p>@((Model.Stock > 10) ? "En stock" : (Model.Stock > 0) ? "Presque épuisé" : "Épuisé")</p>
+    </div>
+</li>

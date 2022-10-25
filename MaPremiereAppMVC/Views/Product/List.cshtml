@@ -1,0 +1,17 @@
+﻿@model MaPremiereAppMVC.Models.ModelViews.ProductListView
+
+@if(Model.NbProductsInStock > 0){
+    <ul class="d-flex">
+    @foreach (Product product in Model.Products)
+    {
+        @if (product.Stock > 0)
+            {
+                Html.RenderPartial("_ProductListItemPartialView", product);
+            }        
+    }
+    </ul>
+    <p>Il y a en tout @Model.NbProductsInStock produit@((Model.NbProductsInStock>1)?"s":"").</p>
+}
+else{
+    <h2>Oups! Le stock est à renouveler... 🙄</h2>
+}
